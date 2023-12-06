@@ -15,11 +15,21 @@ export function getClients2() {
   return data;
 }
 
+export function getUsers() {
+  return webix.ajax("https://dummyjson.com/users").then((data) => {
+    return data.json().users;
+  });
+
+  // return webix.ajax("https://dummyjson.com/users", (_, data) => {
+  //   return data.json().users;
+  // });
+}
+
 export function getClients() {
   return new Promise((resolve, reject) => {
     webix.ajax("https://dummyjson.com/users", (_, data) => {
       if (data) {
-        resolve(data.json());
+        resolve(data.json().users);
       } else {
         reject("Error fetching clients data");
       }
